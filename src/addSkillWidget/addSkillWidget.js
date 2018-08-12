@@ -16,14 +16,16 @@ class AddSkillWidget extends Component {
   }
 
   componentDidMount(){
-    /*fetch('/skills')
+    fetch('/skills')
       .then( response => {
         return response.json();
       })
       .then( data => {
         this.setState({ skills: data });
+      })
+      .catch( err => {
+        console.log(err);
       });
-    */
   }
 
   handleSubmit(event){
@@ -107,10 +109,12 @@ class AddSkillWidget extends Component {
             onChange={this.handleInputChange}>
 
             <option value="" disabled defaultValue hidden>Experience</option>
-            <option value="1 year">1 year</option>
-            <option value="1-3 years">1-3 years</option>
-            <option value="3-5 years">3-5 years</option>
-            <option value="5-7 years">5-7 years</option>
+            <option value="< 1 year">{'< 1 year' }</option>
+            <option value="2 years">2 years</option>
+            <option value="3 years">3 years</option>
+            <option value="4 years">4 years</option>
+            <option value="5 years">5 years</option>
+            <option value="6 years">6 years</option>
             <option value="7+ years">7+ years</option>
           </select>
         </div>
