@@ -13,6 +13,7 @@ class AddSkillWidget extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCloseTag = this.handleCloseTag.bind(this);
   }
 
   componentDidMount(){
@@ -26,6 +27,23 @@ class AddSkillWidget extends Component {
       .catch( err => {
         console.log(err);
       });
+  }
+
+  handleCloseTag(index){
+
+    var skills = this.state.skills;
+    let skill = skills[index];
+    
+    if(skill.id){
+      fetch('/skills/'+skill.id, {
+        method: 'DELETE'
+      })
+      .then(response => {})
+      .catch( err => console.log(err) )
+    }
+
+    delete skills[index];
+    this.setState({skills: skills});
   }
 
   handleSubmit(event){
@@ -129,7 +147,7 @@ class AddSkillWidget extends Component {
       
       <div className="skill-box-wrapper row">
         <div className="skill-box-container col-12 col-md-10 offset-md-1">
-          <SkillContainer skills={this.state.skills} />
+          <SkillContainer handleCloseTag={this.handleCloseTag} skills={this.state.skills} />
         </div>
       </div>
       

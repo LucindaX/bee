@@ -31,7 +31,7 @@ class SkillContainer extends Component {
           </div>
           
           <div className='close-tag col-2 offset-1'>
-            <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes} onClick={() => this.props.handleCloseTag(index)}/>
           </div>
 
         </div>
