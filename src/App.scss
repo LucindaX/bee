@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+$lightGrey: unquote('#80808012');
+$darkBlue: unquote('#3c3c4ef0');
+
+.widget-container {
+  margin-top: 4em;
+}
+
+.skill-box {
+  font-size: 0.9em;
+  margin: 0.6em;
+
+  .row {
+    background: white;
+    min-height: 120%;
+  }
+}
+.skill-box-wrapper {
+  padding: 1em;
+
+  .skill-box-container{ 
+    background: $lightGrey;
+    padding: 1em;
+  }
+
+}
+.index-badge {
+  border-top-left-radius: 0.2em;
+  color: white;
+  background: $darkBlue; }
+.close-tag {
+  cursor: pointer;
+}
+.title{
+  div {
+    padding: 1em;
+    text-align: left;
+    font-size: large;
+  }
+}

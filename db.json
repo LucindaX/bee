@@ -3,17 +3,17 @@
     {
       "id": 123,
       "name": "React",
-      "expirience": "2 years"
+      "experience": "2 years"
     },
     {
       "id": 124,
       "name": "Express.js",
-      "expirience": "4 years"
+      "experience": "4 years"
     },
     {
       "id": 125,
       "name": "GraphQL",
-      "expirience": "< 1 Year"
+      "experience": "< 1 Year"
     }
   ]
 }
