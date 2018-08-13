@@ -19,7 +19,7 @@ class SkillContainer extends Component {
   render(){
     const list = this.state.skills.map( (ele, index) => 
 
-        <div className="skill-box col-12 col-md-3" key={index}>
+        <div className="skill-box col-12 col-md-3" key={ele.id}>
 
         <div className="skill-box-row row no-gutters" >
          

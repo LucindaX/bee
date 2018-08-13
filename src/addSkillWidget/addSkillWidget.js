@@ -37,7 +37,7 @@ class AddSkillWidget extends Component {
       method: 'DELETE'
     })
     .then(response => {
-      delete skills[index];
+      skills.splice(index,1);
       this.setState({skills: skills});
       return;
     })
