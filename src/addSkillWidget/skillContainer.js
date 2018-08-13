@@ -23,7 +23,9 @@ class SkillContainer extends Component {
 
         <div className="skill-box-row row no-gutters" >
          
-          <div className="index-badge col-1">{index+1}</div>
+          <div className={'index-badge col-1 '+ (index > 4 ? 'background-faded-blue' : 'background-dark-blue') }>
+            {index+1}
+          </div>
           
           <div className="skill-content-col col-6 offset-2">
             {ele.name}<br/>

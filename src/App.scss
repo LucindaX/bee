@@ -29,6 +29,15 @@
 
 $lightGrey: unquote('#80808012');
 $darkBlue: unquote('#3c3c4ef0');
+$fadedBlue: unquote('#3c3c4e80');
+
+.background-dark-blue{
+  background: $darkBlue;
+}
+
+.background-faded-blue{
+  background: $fadedBlue;
+}
 
 .widget-container {
   margin-top: 4em;
@@ -64,10 +73,12 @@ $darkBlue: unquote('#3c3c4ef0');
   }
 
 }
+
 .index-badge {
   border-top-left-radius: 0.2em;
   color: white;
-  background: $darkBlue; }
+}
+
 .close-tag {
   cursor: pointer;
 }
