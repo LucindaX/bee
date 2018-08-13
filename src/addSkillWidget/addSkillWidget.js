@@ -24,9 +24,7 @@ class AddSkillWidget extends Component {
       .then( data => {
         this.setState({ skills: data });
       })
-      .catch( err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   }
 
   handleCloseTag(index){
@@ -54,26 +52,50 @@ class AddSkillWidget extends Component {
 
     inputSkills = [...new Set(inputSkills.split(','))];
     
-    // validations
+    /* validations */
     var errors = [];
 
     inputSkills.forEach( skill => {
+      
+      /* validate for length */
       if (skill.length > 255 || skill.length < 4)
         errors.push({key: skill, message:"skill entries must be between 4 & 255 characters"});
+      
+      /* validate for uniquness */
+      let duplicate = this.state.skills.some( el => {
+        return el.name.toLowerCase() === skill.toLowerCase()
+      });
+
+      if(duplicate) errors.push({key: skill, message:"skill already entered, must be unique"});
+
     });
 
     if(errors.length) return this.setState({ errors: errors });
     
-    
-    let skills = this.state.skills.concat(inputSkills.map( x => ({ name: x, experience: this.state.experience }) ));
-    
-    this.setState({ 
-      skills: skills, 
-      inputSkills: "", 
-      experience: "",
-      submitDisabled: true,
-      errors: []
+    inputSkills = inputSkills.map( x => ({ name: x, experience: this.state.experience }) );
+
+    const promises = inputSkills.map( obj => {
+      return fetch('/skills',{
+               method: 'POST',
+               body: JSON.stringify(obj),
+               headers:{
+                 'Content-Type': 'application/json'
+               }
+             });
     });
+
+    Promise.all(promises)
+      .then(values => {
+        let skills = this.state.skills.concat(inputSkills)
+        this.setState({ 
+          skills: skills, 
+          inputSkills: "", 
+          experience: "",
+          submitDisabled: true,
+          errors: []
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   handleInputChange(event){
