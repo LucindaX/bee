@@ -22,8 +22,6 @@ $ npm start
 
 ## Project Summary
 
-![desktop](public/md-screenshot.png) ![mobile](public/sm-screenshot.png)
-
 The app is a simple prototype for a form that allows to add *skills* with *experience* level provided for each or multiple.
 The form allows for adding multiple skills at once separated by __commas__
 ex: Node.js,Express.js,MatLab
