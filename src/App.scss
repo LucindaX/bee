@@ -78,3 +78,8 @@ $darkBlue: unquote('#3c3c4ef0');
     font-size: large;
   }
 }
+.submit-button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

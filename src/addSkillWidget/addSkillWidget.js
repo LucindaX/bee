@@ -161,7 +161,7 @@ class AddSkillWidget extends Component {
 
         <div className="form-group col-4 col-md-3">
           <input type="submit" value="Add Skills"
-            className="form-control btn btn-primary"
+            className="submit-button form-control btn btn-primary"
             disabled={this.state.submitDisabled}/>
         </div>
 
