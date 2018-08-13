@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SkillContainer from './skillContainer';
+import {isEmptyOrSpaces} from '../helpers';
 
 class AddSkillWidget extends Component {
   constructor(){
@@ -32,16 +33,15 @@ class AddSkillWidget extends Component {
     var skills = this.state.skills;
     let skill = skills[index];
     
-    if(skill.id){
-      fetch('/skills/'+skill.id, {
-        method: 'DELETE'
-      })
-      .then(response => {})
-      .catch( err => console.log(err) )
-    }
-
-    delete skills[index];
-    this.setState({skills: skills});
+    fetch('/skills/'+skill.id, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      delete skills[index];
+      this.setState({skills: skills});
+      return;
+    })
+    .catch( err => console.log(err) )
   }
 
   handleSubmit(event){
@@ -81,12 +81,13 @@ class AddSkillWidget extends Component {
                headers:{
                  'Content-Type': 'application/json'
                }
-             });
+             })
+             .then(res => res.json());
     });
 
     Promise.all(promises)
       .then(values => {
-        let skills = this.state.skills.concat(inputSkills)
+        let skills = this.state.skills.concat(values);
         this.setState({ 
           skills: skills, 
           inputSkills: "", 
@@ -104,18 +105,27 @@ class AddSkillWidget extends Component {
     const value = target.value;
     const name = target.name;
 
-    let otherInput = name === "inputSkills" ? this.state.experience : this.state.inputSkills ;
+    var otherInput, nameLength;
 
-    if(otherInput !== "" &&
-        value !== ""){
-      this.setState({ submitDisabled: false });
+    if(name === "inputSkills"){
+      otherInput = this.state.experience;
+      nameLength = value.length  
+    }else{ 
+      otherInput = this.state.inputSkills;
+      nameLength = this.state.inputSkills.length
     }
+
+    
+    if(isEmptyOrSpaces(otherInput) ||
+        isEmptyOrSpaces(value) ||
+        nameLength < 4)
+      this.setState({ submitDisabled: true });
+    else
+      this.setState({ submitDisabled: false });
 
     this.setState({
       [name]: value
     });
-
-    
 
   }
 
